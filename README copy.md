@@ -1,5 +1,5 @@
 REST API facade template for microservices that interacts with the MultiversX blockchain.
-
+test
 ## Quick start
 
 1. Run `npm install` in the project directory
