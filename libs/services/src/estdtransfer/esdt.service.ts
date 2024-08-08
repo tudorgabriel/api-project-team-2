@@ -10,6 +10,7 @@ import { Injectable } from '@nestjs/common';
 import { promises } from 'fs';
 import { CommonService } from './common.service';
 import { UtilsDataEnum } from './enums';
+
 @Injectable()
 export class EsdtService {
     constructor(private readonly commonService: CommonService) { }
@@ -48,6 +49,7 @@ export class EsdtService {
     //     const transaction = interactor.buildTransaction();
     //     return transaction;
     // }
+
 }
 
 
