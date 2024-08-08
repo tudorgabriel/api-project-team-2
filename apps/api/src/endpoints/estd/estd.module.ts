@@ -4,7 +4,7 @@ import { DynamicModuleUtils } from '@libs/common';
 import { ServicesModule } from '@libs/services/services.module';
 
 @Module({
-  imports: [ServicesModule],
+  imports: [ServicesModule, DynamicModuleUtils.getCachingModule()],
   controllers: [EstdController],
   providers: [DynamicModuleUtils.getNestJsApiConfigService()],
 })
