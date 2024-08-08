@@ -8,9 +8,7 @@ export class EstdController {
   constructor(private readonly estdService: EstdService) {}
   @Get('/estd')
   async getEstd() {
-    return await this.estdService.getEstd(
-      'erd1qqqqqqqqqqqqqpgqn6skx92uyddka3mhx9fd3pryl9p0rcsz3e8sxdx6yl',
-    );
+    return await this.estdService.getEstd();
   }
   //   @UseGuards(NativeAuthGuard)
   //   @ApiResponse({

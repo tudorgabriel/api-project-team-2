@@ -4,7 +4,6 @@ import abiRow from './esdt-transfer-with-fee.abi.json';
 import { ApiNetworkProvider } from '@multiversx/sdk-network-providers';
 import {
   AbiRegistry,
-  Address,
   QueryRunnerAdapter,
   SmartContractQueriesController,
 } from '@multiversx/sdk-core/out';
@@ -26,12 +25,12 @@ export class EstdService {
     });
   }
 
-  async getEstd(adress: string) {
+  async getEstd() {
     const query = this.queriesController.createQuery({
       contract:
         'erd1qqqqqqqqqqqqqpgqn6skx92uyddka3mhx9fd3pryl9p0rcsz3e8sxdx6yl',
-      function: 'getTokenFee',
-      arguments: [new Address(adress)],
+      function: 'getPaidFees',
+      arguments: [],
     });
 
     const response = await this.queriesController.runQuery(query);
