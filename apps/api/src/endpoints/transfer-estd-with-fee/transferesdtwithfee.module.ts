@@ -1,13 +1,10 @@
-import { Module } from "@nestjs/common";
-import { TransferEsdtWithFeeController } from "./trasnferesdtwithfee.controller";
-import { EsdtService } from "@libs/services/estdtransferservice";
-import { CommonService } from "@libs/services/estdtransferservice/common.service";
+import { Module } from '@nestjs/common';
+import { TransferEsdtWithFeeController } from './trasnferesdtwithfee.controller';
+import { ServicesModule } from '@libs/services';
 
 @Module({
-    imports: [],
-    providers: [EsdtService, CommonService],
-    controllers: [
-        TransferEsdtWithFeeController
-    ]
+  imports: [ServicesModule],
+  providers: [],
+  controllers: [TransferEsdtWithFeeController],
 })
-export class TransferEsdtWithFeeModule { }
+export class TransferEsdtWithFeeModule {}
