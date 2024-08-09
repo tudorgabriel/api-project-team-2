@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+import { Module } from '@nestjs/common';
+import { TransferEsdtWithFeeController } from './trasnferesdtwithfee.controller';
+import { ServicesModule } from '@libs/services';
+import { DynamicModuleUtils } from '@libs/common';
+
+@Module({
+  imports: [ServicesModule, DynamicModuleUtils.getCachingModule()],
+  providers: [DynamicModuleUtils.getNestJsApiConfigService()],
+  controllers: [TransferEsdtWithFeeController],
+=======
 import { Module } from "@nestjs/common";
 import { TransferEsdtWithFeeController } from "./trasnferesdtwithfee.controller";
 import { EsdtService } from "@libs/services/estdtransferservice";
@@ -10,5 +21,6 @@ import { NetworkConfigService } from "@libs/common";
     controllers: [
         TransferEsdtWithFeeController
     ]
+>>>>>>> main
 })
-export class TransferEsdtWithFeeModule { }
+export class TransferEsdtWithFeeModule {}
