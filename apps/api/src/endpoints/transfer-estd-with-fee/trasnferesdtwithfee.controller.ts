@@ -1,5 +1,5 @@
 import { EsdtService } from '@libs/services/estdtransfer/esdt.service';
-import { Body, Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { NativeAuth, NativeAuthGuard } from '@multiversx/sdk-nestjs-auth';
 
 @Controller('/esdt-transfer')
