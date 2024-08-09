@@ -16,17 +16,17 @@ export class CacheInfo {
     ttl: Constants.oneHour(),
   };
 
-  static PaidFees(user: string): CacheInfo {
+  static PaidFees(): CacheInfo {
     return {
-      key: `paidfees:${user}`,
+      key: `paidfees:`,
       ttl: Constants.oneHour()
     }
   }
 
 
-  static TokenFees(): CacheInfo {
+  static TokenFees(token: string): CacheInfo {
     return {
-      key: `tokenfees`,
+      key: `tokenfees:${token}`,
       ttl: Constants.oneHour()
     }
   }

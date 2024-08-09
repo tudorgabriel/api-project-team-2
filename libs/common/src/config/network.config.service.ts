@@ -10,7 +10,7 @@ export interface NetworkConfig {
 export class NetworkConfigService {
   private readonly devnetConfig: NetworkConfig = {
     chainID: 'D',
-    estdtransferwithfeeContract: "erd1qqqqqqqqqqqqqpgqlhr2ygmratvx5usckzl5g4992eelwe6r3e8sl62pz0"
+    estdtransferwithfeeContract: "erd1qqqqqqqqqqqqqpgqrhrzduqcwyx0vfex78qqht9pnh3chf2q3e8sspdx9m"
   };
   private readonly testnetConfig: NetworkConfig = {
     chainID: 'T',

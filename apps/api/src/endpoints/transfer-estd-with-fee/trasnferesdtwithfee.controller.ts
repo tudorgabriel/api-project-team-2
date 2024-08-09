@@ -1,6 +1,6 @@
 
 import { EsdtService } from "@libs/services/estdtransferservice/esdt.service";
-import { Controller, Get, } from "@nestjs/common";
+import { Body, Controller, Get, } from "@nestjs/common";
 
 
 @Controller('/esdt-transfer')
@@ -21,10 +21,18 @@ export class TransferEsdtWithFeeController {
     // }
 
     @Get('/tokensfee')
-    async getTokensFee() {
-        console.log('Trying to see the tokens fee');
-        const transaction = await this.esdtService.getTokenFee("TOKENTEST-b0b5")
+    async getTokensFee(@Body() data: { token: string }) {
+        console.log(data.token)
+        console.log('Trying to see the tokens fee for token: ' + data.token);
+        const transaction = await this.esdtService.getTokenFee(data.token)
         return transaction
+    }
+
+
+    @Get('/paidfees')
+    async getPaidFees(): Promise<any> {
+        console.log('Trying to see the paid fees');
+        return await this.esdtService.getPaidFeesList();
     }
 
 

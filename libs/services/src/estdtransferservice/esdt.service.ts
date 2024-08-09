@@ -130,7 +130,21 @@ export class EsdtService {
 
     }
 
-    async getPaidFeesList(): Promise<String> {
+    async getPaidFeesList(): Promise<any> {
+        console.log("Get Paid function called. Searching in cache")
+        console.log(CacheInfo.PaidFees().key)
+        return this.cachingService.getOrSet(
+            CacheInfo.PaidFees().key,
+            async () => await this.getPaidFeesListRaw(),
+            CacheInfo.PaidFees().ttl,
+        );
+    }
+
+
+
+    async getPaidFeesListRaw(): Promise<any> {
+        console.log("Nu am gasit in cache!!!!")
+
         const query = this.queriesController.createQuery({
             contract: this.networkConfigService.config.estdtransferwithfeeContract,
             function: 'getPaidFees',
@@ -138,19 +152,30 @@ export class EsdtService {
         });
         const result = await this.queriesController.runQuery(query);
         const data = this.queriesController.parseQueryResponse(result);
-        console.log(data);
-        return '';
+        //const parsedData = this.queriesController.parseQueryResponse(result);
+        const obiect1 = data[0][0][0];
+        const obiect2 = data[0][0][1];
+        const fee_token = obiect1.field0;
+        const fee_amount = obiect2.c;
+        console.log(fee_token)
+        console.log(fee_amount[0])
+        return {
+            feetoken: fee_token,
+            fee_amount: fee_amount[0]
+        };
     }
-
 
 
     async getTokenFee(token: string): Promise<any> {
         console.log("Get Token Fee function called. Searching in cache")
+        console.log(CacheInfo.TokenFees(token).key)
         return this.cachingService.getOrSet(
-            CacheInfo.TokenFees().key,
+            CacheInfo.TokenFees(token).key,
             async () => await this.getTokenFeeRaw(token),
-            CacheInfo.TokenFees().ttl,
+            CacheInfo.TokenFees(token).ttl,
         );
+
+
 
     }
 
@@ -162,14 +187,26 @@ export class EsdtService {
             function: 'getTokenFee',
             arguments: [token],
         });
+        console.log(token)
         const result = await this.queriesController.runQuery(query);
+
+        const parsedResult = this.queriesController.parseQueryResponse(result);
+        const fee_type = parsedResult[0].name
+        const amount = parsedResult[0].fields[0].amount.c
+        const token_identifier = parsedResult[0].fields[0].token_identifier
+        console.log(fee_type)
+        console.log(amount)
+        console.log(token_identifier)
 
         // const resultpars = new ResultsParser().parseQueryResponse(
         //     result
         // );
         //console.log(result)
-        console.log(result);
-        return result;
+        return {
+            fee_type: fee_type,
+            amount: amount,
+            token_identifier: token_identifier
+        };
 
     }
 
