@@ -15,4 +15,19 @@ export class CacheInfo {
     key: "examples",
     ttl: Constants.oneHour(),
   };
+
+  static PaidFees(): CacheInfo {
+    return {
+      key: `paidfees:`,
+      ttl: Constants.oneHour()
+    }
+  }
+
+
+  static TokenFees(token: string): CacheInfo {
+    return {
+      key: `tokenfees:${token}`,
+      ttl: Constants.oneHour()
+    }
+  }
 }
