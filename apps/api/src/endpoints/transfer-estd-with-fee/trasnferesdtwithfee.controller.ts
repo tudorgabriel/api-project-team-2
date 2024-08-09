@@ -1,5 +1,6 @@
 import { EsdtService } from '@libs/services/estdtransfer/esdt.service';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { NativeAuth, NativeAuthGuard } from '@multiversx/sdk-nestjs-auth';
 
 @Controller('/esdt-transfer')
 export class TransferEsdtWithFeeController {
@@ -40,21 +41,24 @@ export class TransferEsdtWithFeeController {
       data.token,
     );
   }
-
+  @UseGuards(NativeAuthGuard)
   @Post('/transfer')
   async transfer(
+    @NativeAuth('address') address: string,
+
     @Body()
     data: {
-      address: string;
+      // address: string;
       tokenIdentifier: string;
       amount: string;
       feeTokenIdentifier: string;
       feeAmount: string;
     },
   ): Promise<any> {
-    console.log('Transferring');
+    console.log(data);
+    console.log(address);
     return await this.esdtService.transfer(
-      data.address,
+      address,
       data.tokenIdentifier,
       //data.tokenNonce,
       data.amount,
