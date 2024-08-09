@@ -1,0 +1,12 @@
+urls:
+  api: 'https://devnet-api.multiversx.com'
+  redis: '127.0.0.1'
+  eventsNotifier: " amqp://user-1a1f7b6d:90d70a3e85b4d0ecd4268a2585e12b90af28a6d25e57f6def54082b86ae4432d@devnet-rabbitmq.beaconx.app:5672/"
+features:
+  eventsNotifier:
+    enabled: true
+    port: 5201
+  transactionProcessor:
+    enabled: true
+    port: 5202
+    maxLookBehind: 100
